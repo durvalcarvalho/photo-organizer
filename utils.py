@@ -6,6 +6,13 @@ from PIL.ExifTags import TAGS
 from shutil import copy2
 
 def get_img_date(img_path):
+    try:
+        do_magic(img_path)
+        
+    except Exception as e:
+        return None
+
+def do_magic(img_path):
     ext = img_path.split('.')[-1]
     ext = ext.lower()
     
