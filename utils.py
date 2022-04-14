@@ -15,20 +15,20 @@ def get_img_date(img_path):
 def do_magic(img_path):
     ext = img_path.split('.')[-1]
     ext = ext.lower()
-    
+
     # You may need to add more extensions to this tuple, according to the files in your directory
     not_supported = ('dcr', 'mov', 'db', 'docx', 'ini', 'avi', 'nef', 'xml', 'aae', 'mp4', 'mts', 'sfk', 'wma', 'mp3', 'rar', 'exe', 'htm', 'bin', 'heic', 'ppsx', 'gif')
-    
+
     if ext in not_supported: return None
-    
+
     img = Image.open(img_path)
 
     # if isinstance(img, GifImageFile): return None
-    
+
     info = img._getexif()
 
     # TODO: Move to another DIR
-    if(info == None): return None
+    if info is None: return None
 
     for tag, value in info.items():
         decoded = TAGS.get(tag, tag)
